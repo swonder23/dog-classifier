@@ -77,17 +77,17 @@ nb_faces_actual_dog = 0
 nb_faces_detected_human = 0
 nb_faces_detected_dog = 0
 
-# perfect accuracy for human dataset should be 100%
+# perfect accuracy for human dataset would be 100%
 for human in human_files_short:
     nb_faces_detected_human += face_detector(human)
 accuracy_human = nb_faces_detected_human / nb_faces_actual_human 
-print(accuracy_human)
+print('The percentage of images in human_files_short having a detected face is ' + str(accuracy_human) + '.')
     
-# perfect accuracy for dog dataset should be 0%   
+# perfect accuracy for dog dataset would be 0%   
 for dog in dog_files_short:
     nb_faces_detected_dog += face_detector(dog)
 accuracy_dog = nb_faces_detected_dog / (100 - nb_faces_actual_dog)
-print(accuracy_dog)
+print('The percentage of images in dog_files_short having a detected face is ' + str(accuracy_dog) + '.')
 
 
 
@@ -199,4 +199,29 @@ def dog_detector(img_path):
 
 dog_detector(dog_files_short[0])
 dog_detector(dog_files_short[50])
+
+
+### TODO: Test the performance of the dog_detector function
+### on the images in human_files_short and dog_files_short.
+nb_dogs_actual_human = 0
+nb_dogs_actual_dog = len(dog_files_short)
+nb_dogs_detected_human = 0
+nb_dogs_detected_dog = 0
+
+# perfect accuracy for human dataset would be 0%
+for human in human_files_short:
+    nb_dogs_detected_human += dog_detector(human)
+accuracy_human = nb_dogs_detected_human / (100 - nb_dogs_actual_human) 
+print('The percentage of images in human_files_short having a detected dog is ' + str(accuracy_human) + '.')
+    
+# perfect accuracy for dog dataset would be 100%   
+for dog in dog_files_short:
+    nb_dogs_detected_dog += dog_detector(dog)
+accuracy_dog = nb_dogs_detected_dog / nb_dogs_actual_dog
+print('The percentage of images in dog_files_short having a detected dog is ' + str(accuracy_dog) + '.')
+
+
+
+
+
 
